@@ -6,9 +6,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shims' %>
   </head>
-
+    <%= render 'layouts/header' %>
   <body>
-    <%= yield %>
+
+    <div class ="container">
+      <%= yield %>
+       <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

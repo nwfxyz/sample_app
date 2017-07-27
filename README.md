@@ -17,4 +17,3 @@ is available jointly under the MIT License and the Beerware License. See
 * bundle install --without production
 * rails db:migrate
 * rails testing
-* rails server

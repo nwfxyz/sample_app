@@ -5,6 +5,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
   
+
   test "make sure flash disappears" do
     get login_path
     assert_template "sessions/new"
@@ -43,4 +44,20 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
     
   end
+  
+
+  test "login with remembering2" do
+    log_in_as(@user, remember_me: '1')
+    assert_equal User.find_by_id(@user.id).remember_digest , assigns(:user).remember_digest
+  end
+
+
+  test "login without remembering" do
+    # Log in to set the cookie.
+    log_in_as(@user, remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies['remember_token']
+  end
+  
 end
